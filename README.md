@@ -17,6 +17,7 @@ It features a local LLM chatbot (e.g., Mistral), a ToDo list, Pomodoro timer, an
 
 ---
 
+
 ## 🧠 Tech Stack
 
 - Python + Flask
