@@ -49,7 +49,7 @@ h1, h2 {
 h1 { font-size: 1.8rem; }
 h2 { font-size: 1.5rem; }
 
-/* Layout */
+/* Layout - Mobile First */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -66,32 +66,24 @@ h2 { font-size: 1.5rem; }
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Desktop Layout */
+/* Mobile Layout (Default) */
 .desktop-layout {
   display: none;
 }
 
 .mobile-sections {
   display: block;
+  padding: 0 var(--spacing-sm);
 }
 
-.left-section {
-  width: 70%;
-  padding-right: var(--spacing-lg);
+/* Adjust mobile section spacing */
+.mobile-sections .section {
+  margin-bottom: var(--spacing-lg);
 }
 
-.right-section {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
-}
-
-.desktop-layout {
-  display: flex;
-  gap: var(--spacing-lg);
-  height: 100vh;
-  padding-top: var(--spacing-lg);
+/* Adjust mobile card padding */
+.mobile-sections .card {
+  padding: var(--spacing-md);
 }
 
 /* Card Design */
@@ -189,7 +181,8 @@ input[type="text"]:focus {
 
 /* Chat Section */
 .chatbox {
-  height: 300px;
+  height: calc(100vh - 300px);
+  min-height: 300px;
   overflow-y: auto;
   margin-bottom: var(--spacing-md);
   padding: var(--spacing-md);
@@ -200,14 +193,15 @@ input[type="text"]:focus {
 }
 
 .chat-card {
-  height: 100%;
+  height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
 }
 
 .chat-card .chatbox {
   flex: 1;
-  min-height: 400px;
+  height: calc(100vh - 280px);
+  min-height: 300px;
 }
 
 .message {
@@ -234,6 +228,7 @@ input[type="text"]:focus {
 .chat-input {
   display: flex;
   gap: var(--spacing-sm);
+  margin-top: auto;
 }
 
 .chat-input input {
@@ -317,7 +312,7 @@ input[type="text"]:focus {
 }
 
 /* Desktop Styles */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   body {
     padding: var(--spacing-md);
     overflow: hidden;
@@ -335,10 +330,25 @@ input[type="text"]:focus {
 
   .desktop-layout {
     display: flex;
+    gap: var(--spacing-lg);
+    height: 100vh;
+    padding-top: var(--spacing-lg);
   }
 
   .mobile-sections {
     display: none;
+  }
+
+  .left-section {
+    width: 70%;
+    padding-right: var(--spacing-lg);
+  }
+
+  .right-section {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
   }
 
   .section {
@@ -371,22 +381,5 @@ input[type="text"]:focus {
   .right-section .timer {
     font-size: 2rem;
     margin: var(--spacing-md) 0;
-  }
-}
-
-/* Mobile Specific Styles */
-@media (max-width: 767px) {
-  .chatbox {
-    height: calc(100vh - 300px);
-    min-height: 300px;
-  }
-
-  .chat-card {
-    height: calc(100vh - 200px);
-  }
-
-  .chat-card .chatbox {
-    flex: 1;
-    height: calc(100vh - 280px);
   }
 }

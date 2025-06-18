@@ -83,7 +83,8 @@ ollama-dashboard/
 │   └── script.js
 └── requirements.txt
 ```
-
+Note: The User Interface is AI -generated, so it might not be perfect. You can customize it as you like.
+---
 ---
 
 ## 🧾 License
