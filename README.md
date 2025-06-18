@@ -16,7 +16,8 @@ It features a local LLM chatbot (e.g., Mistral), a ToDo list, Pomodoro timer, an
 - 📱 Mobile-friendly via local IP access
 
 ---
-
+## Screenshot
+![Desktop Version](image.png)
 
 ## 🧠 Tech Stack
 

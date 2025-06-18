@@ -2,38 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>🧠 AI Chatbot</h1>
-    <div class="chatbox" id="chatbox"></div>
-    <input type="text" id="userInput" placeholder="Ask something..." />
-    <button onclick="sendMessage()">Send</button>
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="nav-item active" data-section="chatbot">🧠 Chat</button>
+    <button class="nav-item" data-section="todo">✅ Todo</button>
+    <button class="nav-item" data-section="pomodoro">⏱️ Timer</button>
+    <button class="nav-item" data-section="youtube">🎵 Music</button>
+  </nav>
 
-    <hr>
+  <main class="container">
+    <div class="desktop-layout">
+      <!-- Left Section - Chat (70% width on desktop) -->
+      <div class="left-section">
+        <section id="chatbot" class="section active">
+          <h1>🧠 AI Chatbot</h1>
+          <div class="card chat-card">
+            <div class="chatbox" id="chatbox"></div>
+            <div class="chat-input">
+              <input type="text" id="userInput" placeholder="Ask something..." aria-label="Chat input" />
+              <button onclick="sendMessage()" class="btn-primary">
+                <span class="btn-text">Send</span>
+                <div class="loading-spinner"></div>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
 
-    <h2>✅ ToDo List</h2>
-    <input type="text" id="taskInput" placeholder="New task">
-    <button onclick="addTask()">Add</button>
-    <ul id="taskList"></ul>
+      <!-- Right Section - Timer and Tasks (30% width on desktop) -->
+      <div class="right-section">
+        <section id="pomodoro" class="section active">
+          <h2>⏱️ Pomodoro Timer</h2>
+          <div class="card">
+            <div id="timer" class="timer">25:00</div>
+            <div class="timer-controls">
+              <button onclick="startPomodoro()" class="btn-primary">Start</button>
+              <button onclick="resetPomodoro()" class="btn-secondary">Reset</button>
+            </div>
+          </div>
+        </section>
 
-    <hr>
+        <section id="todo" class="section active">
+          <h2>✅ ToDo List</h2>
+          <div class="card">
+            <div class="todo-input">
+              <input type="text" id="taskInput" placeholder="New task" aria-label="New task input" />
+              <button onclick="addTask()" class="btn-primary">Add</button>
+            </div>
+            <ul id="taskList" class="todo-list"></ul>
+          </div>
+        </section>
 
-    <h2>⏱️ Pomodoro Timer</h2>
-    <div id="timer">25:00</div>
-    <button onclick="startPomodoro()">Start</button>
-    <button onclick="resetPomodoro()">Reset</button>
+        <section id="youtube" class="section active">
+          <h2>🎵 Focus Music</h2>
+          <div class="card">
+            <iframe 
+              width="100%" 
+              height="200" 
+              src="https://www.youtube.com/embed/8I-BbcRYF-w?si=U_4oIrDX6lDWxEFv" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </section>
+      </div>
+    </div>
 
-    <hr>
+    <!-- Mobile Sections (hidden on desktop) -->
+    <div class="mobile-sections">
+      <section id="chatbot-mobile" class="section active">
+        <h1>🧠 AI Chatbot</h1>
+        <div class="card chat-card">
+          <div class="chatbox" id="chatbox-mobile"></div>
+          <div class="chat-input">
+            <input type="text" id="userInput-mobile" placeholder="Ask something..." aria-label="Chat input" />
+            <button onclick="sendMessageMobile()" class="btn-primary">
+              <span class="btn-text">Send</span>
+              <div class="loading-spinner"></div>
+            </button>
+          </div>
+        </div>
+      </section>
 
-    <h2>🎵 Spotify</h2>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator"
-      width="100%" height="152" frameborder="0" allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"></iframe>
-  </div>
+      <section id="todo-mobile" class="section">
+        <h2>✅ ToDo List</h2>
+        <div class="card">
+          <div class="todo-input">
+            <input type="text" id="taskInput-mobile" placeholder="New task" aria-label="New task input" />
+            <button onclick="addTaskMobile()" class="btn-primary">Add</button>
+          </div>
+          <ul id="taskList-mobile" class="todo-list"></ul>
+        </div>
+      </section>
+
+      <section id="pomodoro-mobile" class="section">
+        <h2>⏱️ Pomodoro Timer</h2>
+        <div class="card">
+          <div id="timer-mobile" class="timer">25:00</div>
+          <div class="timer-controls">
+            <button onclick="startPomodoro()" class="btn-primary">Start</button>
+            <button onclick="resetPomodoro()" class="btn-secondary">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="youtube-mobile" class="section">
+        <h2>🎵 Focus Music</h2>
+        <div class="card">
+          <iframe 
+            width="100%" 
+            height="200" 
+            src="https://www.youtube.com/embed/8I-BbcRYF-w?si=U_4oIrDX6lDWxEFv" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
