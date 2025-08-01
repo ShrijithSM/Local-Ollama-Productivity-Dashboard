@@ -1,4 +1,5 @@
 
+
 # 🧠 Local AI Dashboard with Chatbot + Productivity Tools
 
 This is a fully offline, customizable AI dashboard powered by [Ollama](https://ollama.com/) and a Flask frontend.  
